@@ -6,7 +6,8 @@ jobs:
     docker:
       - image: cimg/python:3.11.4
     steps:
-      - checkout
+      - checkout:
+          method: full
       - run:
           name: Install pytest
           command: pip install pytest
@@ -18,7 +19,8 @@ jobs:
     docker:
       - image: tmaier/markdown-spellcheck:latest
     steps:
-      - checkout
+      - checkout:
+          method: full
       - run:
           name: Check spelling
           command: mdspell --report --ignore-numbers --ignore-acronyms "**/*.md"
@@ -27,7 +29,8 @@ jobs:
     docker:
       - image: tmknom/markdownlint:0.33.0
     steps:
-      - checkout
+      - checkout:
+          method: full
 
       # Note, we can't use a make target here as `make` isn't installed on this Docker image.
       - run:
@@ -38,7 +41,8 @@ jobs:
     docker:
       - image: tmknom/prettier:3.0.0
     steps:
-      - checkout
+      - checkout:
+          method: full
       - run:
           name: Check Prettier
           command: prettier --check .
